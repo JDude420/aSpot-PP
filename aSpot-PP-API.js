@@ -7,6 +7,7 @@ updatelogs = {
   aSpotPPMap: '0.0'
 };
 
+var ctx = com.mojang.minecraftpe.MainActivity.currentMainActitvity.get();
 
 function updateAll(){
   
@@ -41,7 +42,38 @@ function updateCheckPPAPI(){
     if(String(out.toString())==updateLogs.aSpotPPAPI){
       newMsg("aSpot-PP-API.js is up to date. "+String(out.toString()), "§a");
     }else{ newMsg("[aSpot-API] [UPDATER] Updating aSpot-PP-API.js", "§e"); }
-  }catch(e){ newMsg("[aSpot-API] [ERROR] Please connect to the internet to receive updates", "§4"); }
+  }catch(e){ newMsg("[aSpot-API] [ERROR] Please connect to the internet to receive updates", "§4"); updatePP(); }
+}
+
+function updatePP(){
+  var ru  = new java.lang.Runnable({ run: function() {
+    try{
+      var u = new java.net.URL("https://raw.githubusercontent.com/JDude420/aSpot-PP/master/aSpot-PP.js");
+      var c = u.openConnection();
+      c.setRequestMethod("GET");
+      c.setDoOutput(true);
+      c.connect();
+      c.getContentLength();
+      var input = c.getInputStream();
+      var contents = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
+      var bytesRead = 0;
+      while((bytesRead = input.read(contents)) != -1) {
+        newScript += new java.lang.String(contents, 0, bytesRead);
+      }
+      var patchesFolder = ctx.getDir("modscripts", 0);
+      var scriptFile = new java.io.File(patchesFolder, "aSpot-PP.js");
+      var printWriter = new java.io.PrintWriter(scriptFile);
+      printWriter.write(newScript);
+      printWriter.flush();
+			printWriter.close();
+			try{
+			  net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(scriptFile, false);
+			  net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(scriptFile, true);
+			  newMsg("[aSpot-API] [UPDATER] Update complete!", "§a");
+			}catch(e){ }
+			
+    }catch(e){ }
+}});
 }
 
 
