@@ -9,8 +9,16 @@ updatelogs = {
 
 var ctx = com.mojang.minecraftpe.MainActivity.currentMainActitvity.get();
 
+function procCmd(cmnd){
+	var cmd = cmnd.split(" ");
+	if(cmd[0]=="update"){
+		newMsg("Updating all...", "§7");
+		updateAll();
+	}
+}
+
 function updateAll(){
-  
+  updatePP();
 }
 function updateCheckPP(){
   try{
@@ -67,7 +75,7 @@ function updatePP(){
       printWriter.flush();
 			printWriter.close();
 			try{
-			  net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(scriptFile, false);
+			 	net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(scriptFile, false);
 			  net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(scriptFile, true);
 			  newMsg("[aSpot-API] [UPDATER] Update complete!", "§a");
 			}catch(e){ }
