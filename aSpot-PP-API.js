@@ -15,7 +15,7 @@ function updateAll(){
 function updateCheckPP(){
   try{
     var out = java.io.ByteArrayOutputStream();
-    var response=android.net.http.AndroidHttpClient.newInstance("Online()").execute(new org.apache.http.client.methods.HttpGet("https://raw.githubusercontent.com/wilco375/Minecraft-PE-Mod-Scripts/master/ISM_V0.8_update_checker.txt")).getEntity().writeTo(out);
+    var response=android.net.http.AndroidHttpClient.newInstance("Online()").execute(new org.apache.http.client.methods.HttpGet("https://raw.githubusercontent.com/JDude420/aSpot-PP/master/updateChecker-PP.txt")).getEntity().writeTo(out);
     out.close();
     if(String(out.toString())==updatelogs.aSpotPP){
       newMsg("aSpot-PP.js is up to date. "+String(out.toString()), "§a");
@@ -26,7 +26,7 @@ function updateCheckPP(){
 function updateCheckPPTpManager(){
   try{
     var out = java.io.ByteArrayOutputStream();
-    var response=android.net.http.AndroidHttpClient.newInstance("Online()").execute(new org.apache.http.client.methods.HttpGet("https://raw.githubusercontent.com/wilco375/Minecraft-PE-Mod-Scripts/master/ISM_V0.8_update_checker.txt")).getEntity().writeTo(out);
+    var response=android.net.http.AndroidHttpClient.newInstance("Online()").execute(new org.apache.http.client.methods.HttpGet("https://raw.githubusercontent.com/JDude420/aSpot-PP/master/updateChecker-PP-TpManager.txt")).getEntity().writeTo(out);
     out.close();
     if(String(out.toString())==updatelogs.aSpotPPTpManager){
       newMsg("aSpot-PP-TpManager.js is up to date. "+String(out.toString()),"§a");
@@ -37,7 +37,7 @@ function updateCheckPPTpManager(){
 function updateCheckPPAPI(){
   try{
     var out = java.io.ByteArrayOutputStream();
-    var response=android.net.http.AndroidHttpClient.newInstance("Online()").execute(new org.apache.http.client.methods.HttpGet("https://raw.githubusercontent.com/wilco375/Minecraft-PE-Mod-Scripts/master/ISM_V0.8_update_checker.txt")).getEntity().writeTo(out);
+    var response=android.net.http.AndroidHttpClient.newInstance("Online()").execute(new org.apache.http.client.methods.HttpGet("https://raw.githubusercontent.com/JDude420/aSpot-PP/master/updateChecker-PP-API.txt")).getEntity().writeTo(out);
     out.close();
     if(String(out.toString())==updateLogs.aSpotPPAPI){
       newMsg("aSpot-PP-API.js is up to date. "+String(out.toString()), "§a");
