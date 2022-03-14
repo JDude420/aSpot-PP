@@ -29,10 +29,6 @@ class Game {
         this.usedLetters = [];
         
         if(!confirm("Would you like to play a game?\n(Make sure you hit yes on a website you don't care about)")) return;
-        if(window.location.href != "about:blank") {
-            window.open("about:blank");
-            alert("Open again in blank page");
-        }
         
         this.gameWord = atob(gameWord).toUpperCase().split('');
         this.discoveredWord = [];
