@@ -40,17 +40,39 @@ class Game {
     }
     
     render(){
+        let vowels = 'AEIOU'.split('');
+        let consonantCount = 0;
+        let vowelCount = 0;
+        let checkedLetters = [];
+        for (let i = 0; i < this.gameWord.length; i++) {
+            if (!checkedLetters.includes(this.gameWord[i])) {
+                checkedLetters.push(this.gameWord[i]);
+                if (vowels.includes(this.gameWord[i]))
+                    vowelCount++;
+                else consonantCount++;
+                if (this.discoveredWord[i] != "_") {
+                    if(vowels.includes(this.discoveredWord[i]))
+                        vowelCount--;
+                    else consonantCount--;
+                }
+            }
+        }
         let lines = [
-            '<p style="font-size:52px;">Hangman!<p>',
+            '<p style="font-size:52px;">Hangman!</p>',
             `<p style="font-size:32px">TRIES LEFT:${this.triesLeft}</p>`,
             `<h2 id="discovered-word" style="font-size:44px;">${this.discoveredWord.join(", ")}</h2>`,
+            `<p>Consonants: ${consonantCount} <br>Vowels: ${vowelCount}</p>`,
             '<input style="font-size:32px;" type="text" id="hangman-input" onkeypress="game.checkCharacter(event)">',
             '<button onclick="game.makeInput()">Confirm</button>',
+            `<p>${this.usedLetters.join(", ")}</p>`,
         ];
+        
+        if (this.triesLeft > 4)
+            lines[1] = "";
         
         if (this.correct == this.gameWord.length) {
             lines = getItems(lines, 0, 2);
-            lines.push('<p style="font-size:64px;">Congrats');
+            lines.push('<p style="font-size:64px;">Congrats</p>');
             lines.push('<button onclick="game.createRandomGame()">Retry</button>');
             document.body.innerHTML = lines.join('\n');
             return;
